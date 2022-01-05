@@ -1,7 +1,10 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-function TestCard({ test }) {
+function TestCard({ test, handleGame }) {
+    const title = test.title.split(' ').join('');
+
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Body>
@@ -10,7 +13,7 @@ function TestCard({ test }) {
                 <Card.Text>
                 {test.description}
                 </Card.Text>
-                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link as={Link} onClick={() => handleGame(title)} to={`/tests/${title}`}>Play {test.title}</Card.Link>
             </Card.Body>
         </Card>
     )
