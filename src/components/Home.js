@@ -1,13 +1,13 @@
 import React from 'react';
 
-import TestCarousel from './TestCarousel';
+import TestsCarousel from './TestCarousel';
 import TestsList from './TestsList';
 
 function Home({ tests }) {
     return (
         <>
         <h1>Earthling Capacity Gauge</h1>
-        <TestCarousel/>
+        <TestsCarousel/>
         <TestsList 
             tests={tests}
         />

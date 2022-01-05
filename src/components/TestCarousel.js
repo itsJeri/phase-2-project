@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import TestCard from './TestCard';
-
-
-function TestCarousel() {
+function TestsCarousel() {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -15,7 +12,7 @@ function TestCarousel() {
   return (
     <div>
     <Carousel activeIndex={index} onSelect={handleSelect}>
-      <Carousel.Item>
+      <Carousel.Item as={Link} to='/tests/ReactionTest'>
         <img
           className="d-block w-100"
           src="https://www.fi.edu/sites/default/files/styles/featured_large/public/images/page/FAH_ScienceRecipes28-30_SR_30.png?itok=1TzicY-v"
@@ -26,7 +23,7 @@ function TestCarousel() {
           <p>Are you faster than a sloth?</p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item as={Link} to='/tests/TypingTest'>
         <img
           className="d-block w-100"
           src="https://media.npr.org/assets/img/2010/10/28/flyingfingers_wide-66394a3796b3a38b91f672f7ff84351dafa2f818.jpg"
@@ -38,7 +35,7 @@ function TestCarousel() {
           <p>How good are you with your fingers?</p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item as={Link} to='/tests/NumberMemory'>
         <img
           className="d-block w-100"
           src="https://media.wnyc.org/i/1500/1111/l/80/1/Numbers.png"
@@ -57,4 +54,4 @@ function TestCarousel() {
   
 
 
-  export default TestCarousel;
+  export default TestsCarousel;

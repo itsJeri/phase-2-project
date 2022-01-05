@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function MainNav() {
     return (
         <Navbar bg="dark" variant="dark" fixed="top">
             <Container>
-            <Navbar.Brand href="#home">Brand</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">Brand</Navbar.Brand>
             <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="#tests">Tests</Nav.Link>
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+            <Nav.Link as={Link} to="/tests">Tests</Nav.Link>
             </Nav>
             </Container>
         </Navbar>
