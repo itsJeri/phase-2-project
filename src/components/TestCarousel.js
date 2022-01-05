@@ -11,6 +11,14 @@ function TestsCarousel() {
 
   return (
     <div>
+      <style type="text/css">
+        {`
+        .carousel-item {
+          height: 500px;
+        }
+        `}
+      </style>
+
     <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item as={Link} to='/tests/ReactionTest'>
         <img

@@ -14,7 +14,7 @@ function Dashboard({ tests }) {
 
     return (
         <>
-        <h1>Margin?</h1>
+        <h1>Dashboard</h1>
         <Table striped bordered hover>
             <thead>
                 <tr>
