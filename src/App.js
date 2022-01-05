@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { createGlobalStyle } from 'styled-components';
 
 import MainNav from './components/MainNav';
 import Home from './components/Home';
@@ -12,11 +11,8 @@ import TypingTest from './components/tests/TypingTest';
 import ReactionTest from './components/tests/ReactionTest';
 import NumberMemory from './components/tests/NumberMemory';
 
-// const GlobalStyle = createGlobalStyle`
-//   body {
-//     margin-top: 15px;
-//   }
-// `
+// Global Body Style
+document.body.style.margin='100px';
 
 function App() {
   const [testData, setTestData] = useState([]);

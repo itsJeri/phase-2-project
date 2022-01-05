@@ -6,7 +6,7 @@ function TestCard({ test, handleGame }) {
     const title = test.title.split(' ').join('');
 
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card className='m-auto' style={{ width: '18rem', height: '10rem' }}>
             <Card.Body>
                 <Card.Title>{test.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{test.subtitle}</Card.Subtitle>

@@ -13,7 +13,7 @@ function TestsList({ tests, handleGame }) {
     })
 
     return (
-        <div className='float-sm-right'>
+        <div className="d-flex flex-row">
             {mappedTests}
         </div>
     )
