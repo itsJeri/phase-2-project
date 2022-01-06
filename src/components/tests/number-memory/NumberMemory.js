@@ -103,7 +103,7 @@ function NumberMemory() {
     }
 
     function uploadScore() {
-        fetch('http://localhost:3000/tests/2', {
+        fetch('http://localhost:3000/tests/3', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
