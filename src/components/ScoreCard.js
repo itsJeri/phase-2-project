@@ -2,7 +2,7 @@ import { useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 
-function ScoreCard({ test, handleRefresh }) {
+function ScoreCard({ test, updateScore }) {
     const [show, setShow] = useState(false);
 
     const title = test.title.split(' ').join('');
@@ -19,7 +19,8 @@ function ScoreCard({ test, handleRefresh }) {
             }),
         })
         handleClose()
-        handleRefresh()
+        updateScore(test.id, 0)
+
     }
     function handleClose() {
         setShow(false);
@@ -29,8 +30,6 @@ function ScoreCard({ test, handleRefresh }) {
     }
 
     return (
-        <>
-
         <tr>
             <td>{test.title}</td>
             <td>
@@ -46,20 +45,18 @@ function ScoreCard({ test, handleRefresh }) {
                     <Modal.Header closeButton>
                     <Modal.Title>Score Reset</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Are you sure you want to delete your score?</Modal.Body>
+                    <Modal.Body>Are you sure you want to delete your {test.title} score?</Modal.Body>
                     <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleReset}>
+                    <Button variant="danger" onClick={handleReset}>
                         Delete
                     </Button>
                     </Modal.Footer>
                 </Modal>
             </td>
         </tr>
-        
-        </>
     )
 }
 
