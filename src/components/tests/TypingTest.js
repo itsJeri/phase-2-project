@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Button } from 'react-bootstrap';
 import randomWords from "random-words";
 //useRef allows to automatically put the cursor in the text input field
 
@@ -162,9 +163,9 @@ function TypingTest() {
           />
         </div>
         <div className="section">
-          <button className="button is-info is-fullwidth" onClick={startButton}>
+          <Button className="button is-info is-fullwidth" onClick={startButton}>
             START
-          </button>
+          </Button>
         </div>
       </div>
       {/* Displays results when timer runs out */}

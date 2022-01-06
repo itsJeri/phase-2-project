@@ -1,12 +1,11 @@
 import TestsList from './TestsList';
 
-function Tests({ tests, handleGame }) {
+function Tests({ tests }) {
     return (
         <>
-        <h1>margin?</h1>
+        <h1>Tests</h1>
         <TestsList
             tests={tests}
-            handleGame={handleGame}
         />
         </>
     )
