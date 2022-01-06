@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect, useRef } from "react";
-import { Button } from 'react-bootstrap';
 import randomWords from "random-words";
+
 //useRef allows to automatically put the cursor in the text input field
 
 // Variables for keeping track of stats
@@ -19,6 +20,7 @@ function TypingTest() {
   const [status, setStatus] = useState("waiting");
   const [currentCharIndex, setCurrentCharIndex] = useState(-1);
   const [currentChar, setCurrentChar] = useState("");
+  const [score, setScore] = useState([]);
   const textInput = useRef(null);
 
   // Renders the random words
@@ -68,7 +70,6 @@ function TypingTest() {
   }
 
   // Moves on to next word after current word is typed
-  // Should I add enter as a button?
   // All current char state highlights current letter being typed
   function handleKeyDown({ keyCode, key }) {
     // kc32 = spacebar
@@ -88,7 +89,7 @@ function TypingTest() {
   }
 
   // checks to see if what is typed matches current word on screen
-  // if/else for words per minute and accuracy
+  // if/else for stats
   function checkMatch() {
     const compareWord = words[currentWordIndex];
     const doesItMatch = compareWord === currentInput.trim();
@@ -101,6 +102,7 @@ function TypingTest() {
 
   // Highlights letters as they are typed
   function getCharClass(wordIdx, charIdx, char) {
+    let color = ''
     if (
       wordIdx === currentWordIndex &&
       charIdx === currentCharIndex &&
@@ -108,9 +110,9 @@ function TypingTest() {
       status !== "finished"
     ) {
       if (char === currentChar) {
-        return "has-background-success";
+        color = wordIdx === charIdx ? 'green' : 'red';
       } else {
-        return "has-background-danger";
+        return <span key={`${char}`} className={color}>{char}</span>;
       }
     } else if (
       wordIdx === currentWordIndex &&
@@ -122,16 +124,38 @@ function TypingTest() {
     }
   }
 
+  // function handleSubmit(e) {
+  //   e.preventDefault()
+  //   if(timer == 0 ) {
+  //     setScore(score)
+
+  //   }
+  // }
+
+  //   function scoreSubmit() {
+  //   e.preventDefault();
+  //   fetch(`http://localhost:3000/tests/3`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ score: score }),
+  //   })
+  // }
+
   return (
-    <div className="TypingTest">
+    <div className="typing-test-container">
+      <h1 className="title">Typing Test</h1>
+      <p className="challenge">How fast can you type?</p>
       {/* Hides words until start button is pressed */}
+      <div className="typing-test">
       {status === "started" && (
         <div className="section">
           <div className="card">
             <div className="card-content">
               <div className="content">
                 {words.map((word, i) => (
-                  <span key={i}>
+                  <span key={i} className="random-words">
                     <span>
                       {word.split("").map((char, idx) => (
                         <span className={getCharClass(i, idx, char)} key={idx}>
@@ -147,9 +171,10 @@ function TypingTest() {
           </div>
         </div>
       )}
+        </div>
       <div className="section">
-        <div className="is-size-1 has-text-centered has-text-primary">
-          <h2>{countdown}</h2>
+        <div className="timer">
+          <h2 className="countdown">{countdown}</h2>
         </div>
         <div className="control is-expanded section">
           <input
@@ -162,29 +187,36 @@ function TypingTest() {
             onChange={(e) => setCurrentInput(e.target.value)}
           />
         </div>
-        <div className="section">
-          <Button className="button is-info is-fullwidth" onClick={startButton}>
-            START
-          </Button>
+
+           <div className="section">
+          <button className="button" onClick={startButton}>
+            START!
+          </button>
+
+  
+
         </div>
       </div>
       {/* Displays results when timer runs out */}
+      <div className="results">
       {status === "finished" && (
         <div className="section">
           <div className="columns">
             <div className="column has-text-centered">
-              <p className="is-size-10">Words Per Minute</p>
-              <p className="has-text-primary is-size-3">{correct}</p>
+              <p className="words-per-minute">Words Per Minute:</p>
+              <p className="words-correct">{correct}</p>
             </div>
             <div className="column has-text-centered">
-              <div className="is-size-10">Accuracy: </div>
-              <p className="has-text-info is-size-3">
-                {Math.round((correct / (correct + incorrect)) * 100)}%
+              <div className="accuracy">Accuracy: </div>
+              <p className="accuracy-calculated">
+                {Math.round((correct / (correct + incorrect)) * 100) || 0}%
+                  {/* {Math.round((correct + incorrect) / 5 / 60000)}% */}
               </p>
             </div>
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

@@ -42,10 +42,12 @@ function App() {
             path='/tests/ReactionTest'
             element={<ReactionTest/>}
           />
+   
           <Route
             path='/tests/TypingTest'
             element={<TypingTest/>}
           />
+    
           <Route
             path='/tests'
             element={<Tests tests={testData} />}
