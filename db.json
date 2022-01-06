@@ -14,7 +14,8 @@
       "subtitle": "How good are you with your fingers?",
       "description": "",
       "image": "",
-      "score": 0
+      "score": 0,
+      "correct": 4
     },
     {
       "id": 3,

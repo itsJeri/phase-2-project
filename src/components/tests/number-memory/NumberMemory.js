@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react';
 import { Button } from 'react-bootstrap';
 import Countdown from './Countdown';
 
-function NumberMemory() {
+function NumberMemory({ updateScore }) {
     const [start, setStart] = useState(false);
     const [answerPage, setAnswerPage] = useState(false);
     const [gameOver, setGameOver] = useState(false);
@@ -12,7 +12,8 @@ function NumberMemory() {
     const [multiplier, setMultiplier] = useState(10);
 
     // GLOBAL VARIABLES
-    const randNum = Math.ceil(Math.random() * multiplier)
+    const randNum = Math.floor(Math.random() * multiplier)
+    const id = 3
   
     useEffect(() => {
         setCorrectNum(randNum);
@@ -29,59 +30,35 @@ function NumberMemory() {
         )
     }
     function gamePage() {
-            if (gameOver) {
-                return (
-                    <>
-                        <h1> GAME OVER</h1>
-                        <h3>Score: {score}</h3>
-                    </>
-                )
-            } else if (answerPage) {
-                return (
-                    <>
-                        <h2>Do you remember the number?</h2> 
-                        <form onSubmit={handleSubmit}>
-                        <input autoFocus type='number' onChange={(e) => setAnswer(e.target.value)} value={answer}/> 
-                        <Button type='submit'>Submit</Button>
-                        </form>
-                    </>
-                )
-            } else {
-                return (
-                    <>
-                        <h2>Memorize:</h2>
-                        <h1>{correctNum}</h1>
-                        <br></br>
-                        <Countdown
-                            changePage={changePage}
-                        />
-                    </>
-                )
-            }
-            // Ternary method
-                // {
-                //     gameOver ? 
-                //     <>
-                //         <h1> GAME OVER</h1>
-                //         <h3>Score: {score}</h3>
-                //     </> :
-                //     answerPage ?
-                //     <>
-                //         <h2>Do you remember the number?</h2> 
-                //         <form onSubmit={handleSubmit}>
-                //         <input autoFocus type='number' onChange={(e) => setAnswer(e.target.value)} value={answer}/> 
-                //         <Button type='submit'>Submit</Button>
-                //         </form>
-                //     </> :
-                //     <>
-                //         <h2>Memorize:</h2>
-                //         <h1>{correctNum}</h1>
-                //         <br></br>
-                //         <Countdown
-                //             changePage={changePage}
-                //         />
-                //     </>
-                // } 
+        if (gameOver) {
+            return (
+                <>
+                    <h1> GAME OVER</h1>
+                    <h3>Score: {score}</h3>
+                </>
+            )
+        } else if (answerPage) {
+            return (
+                <>
+                    <h2>Do you remember the number?</h2> 
+                    <form onSubmit={handleSubmit}>
+                    <input autoFocus type='number' onChange={(e) => setAnswer(e.target.value)} value={answer}/> 
+                    <Button type='submit'>Submit</Button>
+                    </form>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <h2>Memorize:</h2>
+                    <h1>{correctNum}</h1>
+                    <br></br>
+                    <Countdown
+                        changePage={changePage}
+                    />
+                </>
+            )
+        }
     }
 
     // HANDLERS
@@ -101,9 +78,8 @@ function NumberMemory() {
             uploadScore()
         }
     }
-
     function uploadScore() {
-        fetch('http://localhost:3000/tests/2', {
+        fetch('http://localhost:3000/tests/3', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,8 +88,8 @@ function NumberMemory() {
                 score: score,
             }),
         })
+        updateScore(id, score)
     }
-
 
     return (
         <div className='Number Memory'>

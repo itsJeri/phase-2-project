@@ -57,6 +57,6 @@ function fetchScore(){
     <h4><span id="time">{speed}</span>ms</h4> 
     </div>
 
-}
+
 
 export default ReactionTest;

@@ -1,16 +1,14 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import randomWords from "random-words";
+//useRef automatically puts the cursor in the text input field
 
-//useRef allows to automatically put the cursor in the text input field
-
-// Variables for keeping track of stats
+// Global variables for keeping track of stats
 // Timer is at 10 for testing purposes, would be set at 60
-const numberOfWords = 200;
+const id=2;
+const numberOfWords = 150;
 const seconds = 10;
 
-function TypingTest() {
-  // Various states set for creation of game
+function TypingTest({ updateScore }) {
   const [words, setWords] = useState([]);
   const [countdown, setCountdown] = useState(seconds);
   const [currentInput, setCurrentInput] = useState([]);
@@ -20,7 +18,6 @@ function TypingTest() {
   const [status, setStatus] = useState("waiting");
   const [currentCharIndex, setCurrentCharIndex] = useState(-1);
   const [currentChar, setCurrentChar] = useState("");
-  const [score, setScore] = useState([]);
   const textInput = useRef(null);
 
   // Renders the random words
@@ -56,7 +53,7 @@ function TypingTest() {
       setStatus("started");
       let interval = setInterval(() => {
         setCountdown((prevCountdown) => {
-          if (prevCountdown == 0) {
+          if (prevCountdown === 0) {
             clearInterval(interval);
             setStatus("finished");
             setCurrentInput("");
@@ -70,7 +67,7 @@ function TypingTest() {
   }
 
   // Moves on to next word after current word is typed
-  // All current char state highlights current letter being typed
+  // All current char state tracks current character being typed
   function handleKeyDown({ keyCode, key }) {
     // kc32 = spacebar
     if (keyCode === 32) {
@@ -88,7 +85,6 @@ function TypingTest() {
     }
   }
 
-  // checks to see if what is typed matches current word on screen
   // if/else for stats
   function checkMatch() {
     const compareWord = words[currentWordIndex];
@@ -101,8 +97,8 @@ function TypingTest() {
   }
 
   // Highlights letters as they are typed
-  function getCharClass(wordIdx, charIdx, char) {
-    let color = ''
+  function highlightLetters(wordIdx, charIdx, char) {
+    let color = "";
     if (
       wordIdx === currentWordIndex &&
       charIdx === currentCharIndex &&
@@ -110,38 +106,31 @@ function TypingTest() {
       status !== "finished"
     ) {
       if (char === currentChar) {
-        color = wordIdx === charIdx ? 'green' : 'red';
+        return "green";
       } else {
-        return <span key={`${char}`} className={color}>{char}</span>;
+        return "red";
       }
-    } else if (
-      wordIdx === currentWordIndex &&
-      currentCharIndex >= words[currentWordIndex].length
-    ) {
-      return "has-background-danger";
     } else {
       return "";
     }
   }
 
-  // function handleSubmit(e) {
-  //   e.preventDefault()
-  //   if(timer == 0 ) {
-  //     setScore(score)
+  // Handlers for score submit
+  function handleSubmit() {
+    scoreSubmit();
+    alert("Score Submitted");
+  }
 
-  //   }
-  // }
-
-  //   function scoreSubmit() {
-  //   e.preventDefault();
-  //   fetch(`http://localhost:3000/tests/3`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ score: score }),
-  //   })
-  // }
+  function scoreSubmit() {
+    fetch(`http://localhost:3000/tests/2`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ score: correct }),
+    });
+    updateScore(id, correct);
+  }
 
   return (
     <div className="typing-test-container">
@@ -149,29 +138,32 @@ function TypingTest() {
       <p className="challenge">How fast can you type?</p>
       {/* Hides words until start button is pressed */}
       <div className="typing-test">
-      {status === "started" && (
-        <div className="section">
-          <div className="card">
-            <div className="card-content">
-              <div className="content">
-                {words.map((word, i) => (
-                  <span key={i} className="random-words">
-                    <span>
-                      {word.split("").map((char, idx) => (
-                        <span className={getCharClass(i, idx, char)} key={idx}>
-                          {char}
-                        </span>
-                      ))}
+        {status === "started" && (
+          <div className="section">
+            <div className="card">
+              <div className="card-content">
+                <div className="content">
+                  {words.map((word, i) => (
+                    <span key={i} className="random-words">
+                      <span>
+                        {word.split("").map((char, idx) => (
+                          <span
+                            className={highlightLetters(i, idx, char)}
+                            key={idx}
+                          >
+                            {char}
+                          </span>
+                        ))}
+                      </span>
+                      <span> </span>
                     </span>
-                    <span> </span>
-                  </span>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-        </div>
+        )}
+      </div>
       <div className="section">
         <div className="timer">
           <h2 className="countdown">{countdown}</h2>
@@ -187,36 +179,35 @@ function TypingTest() {
             onChange={(e) => setCurrentInput(e.target.value)}
           />
         </div>
-
-           <div className="section">
+        <div className="buttons">
           <button className="button" onClick={startButton}>
-            START!
+            START
           </button>
-
-  
-
+          <button className="submit-button" onClick={() => handleSubmit()}>
+            Submit Your Score
+          </button>
         </div>
       </div>
       {/* Displays results when timer runs out */}
       <div className="results">
-      {status === "finished" && (
-        <div className="section">
-          <div className="columns">
-            <div className="column has-text-centered">
-              <p className="words-per-minute">Words Per Minute:</p>
-              <p className="words-correct">{correct}</p>
-            </div>
-            <div className="column has-text-centered">
-              <div className="accuracy">Accuracy: </div>
-              <p className="accuracy-calculated">
-                {Math.round((correct / (correct + incorrect)) * 100) || 0}%
+        {status === "finished" && (
+          <div className="section">
+            <div className="columns">
+              <div className="column has-text-centered">
+                <p className="words-per-minute">Words Per Minute:</p>
+                <p className="words-correct">{correct}</p>
+              </div>
+              <div className="column has-text-centered">
+                <div className="accuracy">Accuracy: </div>
+                <p className="accuracy-calculated">
+                  {Math.round((correct / (correct + incorrect)) * 100) || 0}%
                   {/* {Math.round((correct + incorrect) / 5 / 60000)}% */}
-              </p>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </div>
   );
 }
