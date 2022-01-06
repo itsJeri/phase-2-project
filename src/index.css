@@ -1,3 +1,11 @@
+:root {
+  --black: #282a36;
+  --green: #80cbc4;
+  --red: #ef9a9a;
+}
+
+
+
 body {
   margin: 0;
   margin-top:15px;
@@ -12,3 +20,73 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.typing-test-container {
+  background-color: grey;
+  height: flex;
+  width: flex;
+}
+
+.typing-test {
+  background-color: white;
+}
+
+.typing-speed {
+  background-color: white;
+}
+
+.timer {
+  background-color: grey;
+}
+
+.countdown {
+ text-align: center;
+}
+/* 
+.words-per-minute {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.words-correct {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.accuracy {
+  text-align: center;
+  font-size: 2px;
+}
+
+.accuracy-calculated {
+  text-align: center;
+  font-size: 2px;
+} */
+
+.button {
+  background: orange;
+  padding: 16px;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 200ms ease;
+}
+  /* .hover {
+    background: darkorange;
+    color: white;
+  
+  }
+  .focus {
+    background: red;
+    color: white;
+  } */
+
+  .green {
+    background-color: var(--green)
+  }
+
+  .red {
+    background-color: var(--red)
+  }
+
