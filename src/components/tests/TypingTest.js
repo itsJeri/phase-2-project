@@ -4,10 +4,11 @@ import randomWords from "random-words";
 
 // Global variables for keeping track of stats
 // Timer is at 10 for testing purposes, would be set at 60
+const id=2;
 const numberOfWords = 150;
 const seconds = 10;
 
-function TypingTest() {
+function TypingTest({ updateScore }) {
   const [words, setWords] = useState([]);
   const [countdown, setCountdown] = useState(seconds);
   const [currentInput, setCurrentInput] = useState([]);
@@ -128,6 +129,7 @@ function TypingTest() {
       },
       body: JSON.stringify({ score: correct }),
     });
+    updateScore(id, correct);
   }
 
   return (
