@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, functionComponent } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import randomWords from "random-words";
 
 //useRef allows to automatically put the cursor in the text input field
@@ -186,10 +187,14 @@ function TypingTest() {
             onChange={(e) => setCurrentInput(e.target.value)}
           />
         </div>
+
            <div className="section">
           <button className="button" onClick={startButton}>
             START!
           </button>
+
+  
+
         </div>
       </div>
       {/* Displays results when timer runs out */}

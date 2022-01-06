@@ -15,6 +15,8 @@ function TestsCarousel() {
         {`
         .carousel-item {
           height: 500px;
+          max-width: 1500px;
+          min-width: 800px;
         }
         `}
       </style>
@@ -24,7 +26,7 @@ function TestsCarousel() {
         <img
           className="d-block w-100"
           src="https://www.fi.edu/sites/default/files/styles/featured_large/public/images/page/FAH_ScienceRecipes28-30_SR_30.png?itok=1TzicY-v"
-          alt="First slide"
+          alt="Reaction Test slide"
         />
         <Carousel.Caption>
           <h3>Reaction Test</h3>
@@ -35,7 +37,7 @@ function TestsCarousel() {
         <img
           className="d-block w-100"
           src="https://media.npr.org/assets/img/2010/10/28/flyingfingers_wide-66394a3796b3a38b91f672f7ff84351dafa2f818.jpg"
-          alt="Second slide"
+          alt="Typing Test slide"
         />
 
         <Carousel.Caption>
@@ -47,7 +49,7 @@ function TestsCarousel() {
         <img
           className="d-block w-100"
           src="https://media.wnyc.org/i/1500/1111/l/80/1/Numbers.png"
-          alt="Third slide"
+          alt="Number Memory slide"
         />
 
         <Carousel.Caption>

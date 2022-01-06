@@ -9,28 +9,24 @@ import Dashboard from './components/Dashboard';
 import Tests from './components/Tests';
 import TypingTest from './components/tests/TypingTest';
 import ReactionTest from './components/tests/ReactionTest';
-import NumberMemory from './components/tests/NumberMemory';
+import NumberMemory from './components/tests/number-memory/NumberMemory';
 
-// Global Body Style
-document.body.style.margin='100px';
+// GLOBAL STYLE
+document.body.style.margin='75px';
 
+// APPLICATION
 function App() {
   const [testData, setTestData] = useState([]);
-  const [currentGame, setCurrentGame] = useState('');
 
   useEffect(() => {
       fetch('http://localhost:3000/tests')
       .then(r => r.json())
       .then(data => {
           setTestData(data)
-          console.log(data)
+          console.log('fetch from app.js')
       })
   }, [])
 
-  function handleGame(game) {
-    setCurrentGame(game)
-    console.log(game)
-  }
 
   return (
     <div className='App'>
@@ -54,7 +50,7 @@ function App() {
     
           <Route
             path='/tests'
-            element={<Tests tests={testData} handleGame={handleGame}/>}
+            element={<Tests tests={testData} />}
           />
           <Route
             path='/dashboard'
