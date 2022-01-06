@@ -14,7 +14,8 @@
       "subtitle": "How good are you with your fingers?",
       "description": "",
       "image": "",
-      "score": 0
+      "score": 2,
+      "correct": 4
     },
     {
       "id": 3,
@@ -22,7 +23,7 @@
       "subtitle": "Useful when a girl gives you her number.",
       "description": "",
       "image": "",
-      "score": 0
+      "score": 2
     }
   ]
 }

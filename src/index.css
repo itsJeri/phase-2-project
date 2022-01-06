@@ -64,13 +64,28 @@ code {
 } */
 
 .button {
-  background: orange;
+  background: green;
   padding: 16px;
   font-size: 1rem;
   border: 2px solid black;
   border-radius: 4px;
   cursor: pointer;
   transition: 200ms ease;
+}
+
+.submit-button {
+  background: orange;
+  padding: 16px;
+  font-size: 1rem;
+  border: 2px solid black;
+ 
+  cursor: pointer;
+
+}
+
+.alert {
+  background: grey;
+  font-size: 2rem;
 }
   /* .hover {
     background: darkorange;
