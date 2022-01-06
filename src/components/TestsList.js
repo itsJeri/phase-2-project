@@ -1,13 +1,12 @@
 import React from 'react';
 import TestCard from './TestCard.js';
 
-function TestsList({ tests, handleGame }) {
+function TestsList({ tests }) {
     const mappedTests = tests.map(test => {
         return (
             <TestCard
                 key={test.id}
                 test={test}
-                handleGame={handleGame}
             />
         )
     })

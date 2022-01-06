@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function TestCard({ test, handleGame }) {
+function TestCard({ test }) {
     const title = test.title.split(' ').join('');
 
     return (
@@ -13,7 +13,7 @@ function TestCard({ test, handleGame }) {
                 <Card.Text>
                 {test.description}
                 </Card.Text>
-                <Card.Link as={Link} onClick={() => handleGame(title)} to={`/tests/${title}`}>Play {test.title}</Card.Link>
+                <Card.Link as={Link} to={`/tests/${title}`}>Play {test.title}</Card.Link>
             </Card.Body>
         </Card>
     )
