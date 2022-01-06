@@ -57,11 +57,11 @@ function App() {
               />
               <Route
                 path='/tests/ReactionTest'
-                element={<ReactionTest/>}
+                element={<ReactionTest updateScore={updateScore}/>}
               />
               <Route
                 path='/tests/TypingTest'
-                element={<TypingTest/>}
+                element={<TypingTest updateScore={updateScore}/>}
               />
               <Route
                 path='/tests'

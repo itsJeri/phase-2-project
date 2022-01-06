@@ -1,5 +1,5 @@
 
-function ReactionTest() {
+function ReactionTest({ updateScore }) {
     return (
         <>
             <h1>Reaction Test Here</h1>
