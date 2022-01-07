@@ -97,14 +97,13 @@ function TypingTime({ updateScore }) {
     }
   }
 
-  // Function for  calculation of WPM
+  // Function for calculation of WPM
   function wordsPerMinute() {
     return correct / 5 / 0.06;
   }
 
   // Highlights letters as they are typed
   function highlightLetters(wordIdx, charIdx, char) {
-    let color = "";
     if (
       wordIdx === currentWordIndex &&
       charIdx === currentCharIndex &&
@@ -158,7 +157,6 @@ function TypingTime({ updateScore }) {
       <p className="challenge">
         Score is calculated from total words typed, not WPM
       </p>
-
       {/* Hides words until start button is pressed */}
       <div className="typing-test">
         {status === "started" && (
