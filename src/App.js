@@ -79,7 +79,7 @@ function App() {
               {testRoutes}
               <Route
                 path='/tests'
-                element={<Tests tests={testData} />}
+                element={<Tests tests={testData}/>}
               />
               <Route
                 path='/dashboard'
