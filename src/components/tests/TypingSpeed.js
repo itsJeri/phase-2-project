@@ -6,7 +6,7 @@ import randomWords from "random-words";
 // Timer is at 10 for testing purposes, would be set at 60
 const id = 2;
 const numberOfWords = 150;
-const seconds = 10;
+const seconds = 20;
 
 function TypingTime({ updateScore }) {
   const [words, setWords] = useState([]);
@@ -18,6 +18,7 @@ function TypingTime({ updateScore }) {
   const [status, setStatus] = useState("waiting");
   const [currentCharIndex, setCurrentCharIndex] = useState(-1);
   const [currentChar, setCurrentChar] = useState("");
+  // const [seconds, setSeconds] = useState(20);
   const textInput = useRef(null);
 
   // Renders the random words
@@ -137,8 +138,22 @@ function TypingTime({ updateScore }) {
     updateScore(id, correct);
   }
 
+  // Handlers for changing amount of seconds for test
+
+  // function changeTimeSixty() {
+  //   setSeconds(60);
+  // }
+
+  // function changeTimeFifteen() {
+  //   setSeconds(15);
+  // }
+
   return (
     <div className="typing-test-container">
+      {/* <div>
+        <button className="change-time-button">Sixty Second Timer</button>
+        <button className="change-time-button">Fifteen Second Timer</button>
+      </div> */}
       <h1 className="title">Typing Test</h1>
       <p className="challenge">How fast can you type?</p>
       {/* Hides words until start button is pressed */}
