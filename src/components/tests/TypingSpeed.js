@@ -133,7 +133,7 @@ function TypingTime({ updateScore }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ score: correct / 5 / 0.06 }),
+      body: JSON.stringify({ score: correct }),
     });
     updateScore(id, correct);
   }
