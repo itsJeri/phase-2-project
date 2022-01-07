@@ -155,7 +155,8 @@ function TypingTime({ updateScore }) {
       <h1 className="title">Typing Test</h1>
       <h3 className="challenge">How fast can you type?</h3>
       <p className="challenge">
-        Score is calculated from total words typed, not WPM
+        Score is calculated from total words typed correctly. Lose a point for
+        an incorrect word.
       </p>
       {/* Hides words until start button is pressed */}
       <div className="typing-test">
