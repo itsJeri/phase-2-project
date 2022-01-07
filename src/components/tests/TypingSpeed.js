@@ -133,7 +133,7 @@ function TypingTime({ updateScore }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ score: correct }),
+      body: JSON.stringify({ score: correct / 5 / 0.06 }),
     });
     updateScore(id, correct);
   }
@@ -154,7 +154,11 @@ function TypingTime({ updateScore }) {
         <button className="change-time-button" onClick={fifteenSeconds}>Fifteen Second Timer</button>
       </div> */}
       <h1 className="title">Typing Test</h1>
-      <p className="challenge">How fast can you type?</p>
+      <h3 className="challenge">How fast can you type?</h3>
+      <p className="challenge">
+        Score is calculated from total words typed, not WPM
+      </p>
+
       {/* Hides words until start button is pressed */}
       <div className="typing-test">
         {status === "started" && (
