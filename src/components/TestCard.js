@@ -6,7 +6,7 @@ function TestCard({ test }) {
     const title = test.title.split(' ').join('');
 
     return (
-        <Card as={Link} to={`/tests/${title}`} className='m-auto' style={{ width: '15rem', height: '18rem', textDecoration: 'none', }}>
+        <Card as={Link} to={`/tests/${title}`} className='m-auto' style={{ width: '25%', height: '18rem', textDecoration: 'none', }}>
             <Card.Img variant="top" src={test.image} style={{width: '100%', height: '10rem', objectFit: 'cover'}}/>
             <Card.Body>
                 <Card.Title>{test.title}</Card.Title>
