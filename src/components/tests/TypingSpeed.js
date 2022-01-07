@@ -4,11 +4,10 @@ import randomWords from "random-words";
 
 // Global variables for keeping track of stats
 // Timer is at 10 for testing purposes, would be set at 60
-const id = 2;
 const numberOfWords = 150;
 const seconds = 20;
 
-function TypingTime({ updateScore }) {
+function TypingSpeed({ test, updateScore }) {
   const [words, setWords] = useState([]);
   const [countdown, setCountdown] = useState(seconds);
   const [currentInput, setCurrentInput] = useState([]);
@@ -20,6 +19,8 @@ function TypingTime({ updateScore }) {
   const [currentChar, setCurrentChar] = useState("");
   // const [seconds, setSeconds] = useState(20);
   const textInput = useRef(null);
+
+  const id = test.id;
 
   // Renders the random words
   useEffect(() => {
@@ -235,4 +236,4 @@ function TypingTime({ updateScore }) {
   );
 }
 
-export default TypingTime;
+export default TypingSpeed;
