@@ -6,11 +6,10 @@ import TestsList from './TestsList';
 function Home({ tests }) {
     return (
         <>
-        <TestsCarousel/>
+        <TestsCarousel tests={tests} />
         <br></br>
-        <TestsList 
-            tests={tests}
-        />
+        <br></br>
+        <TestsList tests={tests} />
         </>
     )
 }

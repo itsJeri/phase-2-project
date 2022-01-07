@@ -1,12 +1,14 @@
 import React,{useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 
-function ReactionTest(){
+function ReactionTime({ test, updateScore }){
     const[color,setColor]=useState()
     const[score,setScore]=useState(0)
     const [start, setStart] = useState(false);
     const [seconds, setSeconds] = useState();
     const [click, setClick]=useState(false)
+    
+    const id = test.id;
     const pacman = {
         width: '0px',
         height:'0px',
@@ -80,4 +82,4 @@ function fetchScore(){
     <h4><span id="time">{seconds}</span></h4>
     </div>
 }
-export default ReactionTest;
+export default ReactionTime;

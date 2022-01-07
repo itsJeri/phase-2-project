@@ -20,7 +20,6 @@ function ScoreCard({ test, updateScore }) {
         })
         handleClose()
         updateScore(test.id, 0)
-
     }
     function handleClose() {
         setShow(false);
