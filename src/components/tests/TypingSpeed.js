@@ -100,7 +100,7 @@ function TypingSpeed({ test, updateScore }) {
 
   // Function for calculation of WPM
   function wordsPerMinute() {
-    return correct / 5 / 0.06;
+    return Math.round(correct / 5 / 0.06);
   }
 
   // Highlights letters as they are typed
