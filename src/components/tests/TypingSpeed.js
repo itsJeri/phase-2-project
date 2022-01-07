@@ -8,7 +8,7 @@ const id = 2;
 const numberOfWords = 150;
 const seconds = 10;
 
-function TypingTest({ updateScore }) {
+function TypingTime({ updateScore }) {
   const [words, setWords] = useState([]);
   const [countdown, setCountdown] = useState(seconds);
   const [currentInput, setCurrentInput] = useState([]);
@@ -216,4 +216,4 @@ function TypingTest({ updateScore }) {
   );
 }
 
-export default TypingTest;
+export default TypingTime;
