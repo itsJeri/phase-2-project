@@ -98,7 +98,7 @@ function TypingTime({ updateScore }) {
 
   // Function for  calculation of WPM
   function wordsPerMinute() {
-    return (correct + incorrect / 5) / 0.06;
+    return correct / 5 / 0.06;
   }
 
   // Highlights letters as they are typed
