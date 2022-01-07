@@ -224,6 +224,8 @@ function TypingTime({ updateScore }) {
                 <p className="accuracy-calculated">
                   {Math.round((correct / (correct + incorrect)) * 100) || 0}%
                 </p>
+                <div className="score">Score: </div>
+                <p className="score">{correct - incorrect}</p>
               </div>
             </div>
           </div>
