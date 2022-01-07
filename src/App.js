@@ -9,8 +9,8 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Tests from './components/Tests';
-import TypingTest from './components/tests/TypingTest';
-import ReactionTest from './components/tests/ReactionTest';
+import TypingTest from './components/tests/TypingSpeed';
+import ReactionTest from './components/tests/ReactionTime';
 import NumberMemory from './components/tests/number-memory/NumberMemory';
 
 // APPLICATION
@@ -59,11 +59,11 @@ function App() {
                 element={<NumberMemory updateScore={updateScore}/>}
               />
               <Route
-                path='/tests/ReactionTest'
+                path='/tests/ReactionTime'
                 element={<ReactionTest updateScore={updateScore}/>}
               />
               <Route
-                path='/tests/TypingTest'
+                path='/tests/TypingSpeed'
                 element={<TypingTest updateScore={updateScore}/>}
               />
               <Route

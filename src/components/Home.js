@@ -6,7 +6,6 @@ import TestsList from './TestsList';
 function Home({ tests }) {
     return (
         <>
-        <h1>Earthling Capacity Gauge</h1>
         <TestsCarousel/>
         <br></br>
         <TestsList 

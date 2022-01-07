@@ -71,7 +71,7 @@ function Footer() {
                     {/* FOOTER BOTTOM */}
                     <div className='footer-bottom'>
                         <p className='text-xs-center'>
-                            &copy;{new Date().getFullYear()} Earthling Capacity Gauge - All Rights Reserved
+                            &copy;{new Date().getFullYear()} Earthling Aptitude Test - All Rights Reserved
                         </p>
                     </div>
                 </div>

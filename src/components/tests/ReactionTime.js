@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import Button from 'react-bootstrap/Button';
-function ReactionTest(){
+function ReactionTime(){
     const[color,setColor]=useState()
     const[startTime,setStartTime]=useState(0)
     const[stopTime,setStopTime]=useState(0)
@@ -47,4 +47,4 @@ function fetchScore(){
     <h4><span id="time">{speed}</span>ms</h4>
     </div>
 }
-export default ReactionTest;
+export default ReactionTime;
