@@ -46,7 +46,7 @@ function TestsCarousel() {
       </style>
 
     <Carousel activeIndex={index} onSelect={handleSelect} fade={true} interval={5000}>
-      <Carousel.Item as={Link} to='/tests/ReactionTest'>
+      <Carousel.Item as={Link} to='/tests/ReactionTime'>
         <img
           src="https://cdn.pixabay.com/photo/2014/11/16/23/39/superhero-534120_960_720.jpg"
           alt="Reaction Test slide"
@@ -56,7 +56,7 @@ function TestsCarousel() {
           <h5>Are you faster than a sloth?</h5>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item as={Link} to='/tests/TypingTest'>
+      <Carousel.Item as={Link} to='/tests/TypingSpeed'>
         <img
           src="https://media.npr.org/assets/img/2010/10/28/flyingfingers_wide-66394a3796b3a38b91f672f7ff84351dafa2f818.jpg"
           alt="Typing Test slide"
