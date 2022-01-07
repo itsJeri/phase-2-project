@@ -6,7 +6,7 @@ import randomWords from "random-words";
 // Timer is at 10 for testing purposes, would be set at 60
 const id = 2;
 const numberOfWords = 150;
-const seconds = 60;
+const seconds = 10;
 
 function TypingTest({ updateScore }) {
   const [words, setWords] = useState([]);
@@ -98,7 +98,7 @@ function TypingTest({ updateScore }) {
 
   // Function for  calculation of WPM
   function wordsPerMinute() {
-    return (correct + incorrect) / 0.6;
+    return (correct + incorrect / 5) / 0.06;
   }
 
   // Highlights letters as they are typed
