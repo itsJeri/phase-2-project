@@ -24,7 +24,8 @@ function NumberMemory({ updateScore }) {
     function startPage() {
         return (
             <>
-                <h2>Number Memory</h2>
+                <h1>Number Memory</h1>
+                <h3>How many digits can you remember?</h3>
                 <Button onClick={() => setStart(true)}>Start</Button>
             </>
         )
@@ -92,7 +93,7 @@ function NumberMemory({ updateScore }) {
     }
 
     return (
-        <div className='Number Memory'>
+        <div className='Number Memory' style={{width: 'flex'}}>
             {start 
             ? gamePage()
             : startPage()}

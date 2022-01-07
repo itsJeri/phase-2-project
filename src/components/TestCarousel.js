@@ -10,13 +10,17 @@ function TestsCarousel() {
   }
 
   return (
-    <div>
+    <div style={{margin: 'auto', width: '70%'}}>
       <style type="text/css">
         {`
         .carousel-item {
-          height: 500px;
+          height: 400px;
           max-width: 1500px;
           min-width: 800px;
+        }
+        .carousel-caption {
+          position: absolute;
+          top: 0%;
         }
         `}
       </style>
@@ -25,11 +29,11 @@ function TestsCarousel() {
       <Carousel.Item as={Link} to='/tests/ReactionTest'>
         <img
           className="d-block w-100"
-          src="https://www.fi.edu/sites/default/files/styles/featured_large/public/images/page/FAH_ScienceRecipes28-30_SR_30.png?itok=1TzicY-v"
+          src="https://cdn.pixabay.com/photo/2014/11/16/23/39/superhero-534120_960_720.jpg"
           alt="Reaction Test slide"
         />
         <Carousel.Caption>
-          <h3>Reaction Test</h3>
+          <h2>Reaction Test</h2>
           <p>Are you faster than a sloth?</p>
         </Carousel.Caption>
       </Carousel.Item>

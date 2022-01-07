@@ -1,4 +1,3 @@
-
 function ReactionTest({ updateScore }) {
     return (
         <>

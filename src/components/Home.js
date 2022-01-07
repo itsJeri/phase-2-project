@@ -8,6 +8,7 @@ function Home({ tests }) {
         <>
         <h1>Earthling Capacity Gauge</h1>
         <TestsCarousel/>
+        <br></br>
         <TestsList 
             tests={tests}
         />
