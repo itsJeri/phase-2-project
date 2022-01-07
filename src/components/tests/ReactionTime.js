@@ -1,50 +1,83 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
-function ReactionTime(){
+
+function ReactionTest(){
     const[color,setColor]=useState()
-    const[startTime,setStartTime]=useState(0)
-    const[stopTime,setStopTime]=useState(0)
-    const[speed,setSpeed]=useState(0)
     const[score,setScore]=useState(0)
     const [start, setStart] = useState(false);
- function handleStart(){	
-        setStart(true)
-        fetchScore()
-    const colorArray=["lightBlue","yellow","orange","pink"]
-    const index= Math.floor((Math.random()*4))
-    setTimeout(()=> {
-        setColor( colorArray[index]!==color? colorArray[index]:"#CAB8FF")
-     setStartTime(Date.now())
-    setSpeed(stopTime-startTime)
-    setScore((speed<600)?score+10:score)
-},3000)
-fetchScore()
+    const [seconds, setSeconds] = useState();
+    const [click, setClick]=useState(false)
+    const pacman = {
+        width: '0px',
+        height:'0px',
+        borderRight: '200px solid transparent',
+        borderTop: '200px solid ',
+        borderTopColor:color,
+        borderLeft: '200px solid',
+        borderLeftColor:color,
+        borderBottom: '200px solid',
+        borderBottomColor:color,
+        borderTopLeftRadius: '200px',
+        borderTopRightRadius:'200px',
+        borderBottomLeftRadius: '200px',
+        borderBottomRightRadius: '200px',
+        left:'50%' ,margin: 'auto',
+        marginBottom:'50px'
+      }
+    function toggle() {
+        setStart(!start);
+        setSeconds(start?seconds:0)
+      }
+      useEffect(() => {
+        const colorArray=["#845EC2","#FF6F91","#FF9671","#F9F871"]
+        const index= Math.floor((Math.random()*4))
+        let interval = null;
+        if (start) {
+        setColor(colorArray[index]!==color?colorArray[index]:'#845EC2')
+         if (click && color === '#F9F871'){
+             setScore(score+10)
+         }
+          interval = setInterval(() => {
+            setSeconds(seconds => seconds + 1);
+          }, 1000);
+          if (seconds === 30 ){
+              setStart(false)
+            clearInterval(interval);
+            fetchScore()
+            setSeconds("Time Out")}
+        }
+        else if (!start) {
+          clearInterval(interval);
+          fetchScore()
+        }
+        return () => clearInterval(interval);
+      }, [start,seconds]);
+function handleClick(){
+    setClick(true)
+    setTimeout(()=>{setClick(false)},1000)
 }
 function fetchScore(){
-    fetch("http://localhost:3000/tests/1",{
-    method:"PATCH",
+    fetch('http://localhost:3000/tests/1',{
+    method:'PATCH',
     headers:{
-        "Content-Type":
-        "application/json"
+        'Content-Type':
+        'application/json'
      },
     body:JSON.stringify({score:score})
 })
 }
-    function handleClick(){
-    setStopTime(Date.now())
-}
-    return <div style={{backgroundColor:"#FFEFEF"}}>
-    <div class="instructions" style={{}} >
-		<h1>Test your reactions</h1>
-		<h5>Click Start & Click On The Div When Color Changes</h5>
-	</div>
-	<div class="scoreBoard" style={{ }}>
-        {/*  <p><span id="highScore" >{score}</span>points</p>*/}
-        <Button variant="success" onClick={handleStart}>{start?"Try Again":"START"}</Button>
-	</div>
-	<div id="box"  onClick={handleClick} style={{backgroundColor:color,height: "500px",width: "800px",left:"50%" ,margin: "auto"}}>
+    return <div> 
+    <div class="instructions">
+        <h1>Test your reactions</h1>
+        <h5>Click Start & Click On The <span  style={{textShadow: "2px 2px 2px yellow"}}> Pacman</span> When It's <span style={{textShadow: "5px 5px 5px yellow"}}>Yellow</span></h5>
     </div>
-    <h4><span id="time">{speed}</span>ms</h4>
+    <div class="scoreBoard" style={{marginBottom:"50px"}}>
+        <h2><span id="highScore" style={{color:color}} >{score}</span>  points</h2>
+        <p></p>
+        <Button variant="success" onClick={toggle}>{start?"Add My Score":"START"}</Button>
+    </div>
+    <div style={pacman} onClick ={handleClick}> </div>
+    <h4><span id="time">{seconds}</span></h4>
     </div>
 }
-export default ReactionTime;
+export default ReactionTest;
