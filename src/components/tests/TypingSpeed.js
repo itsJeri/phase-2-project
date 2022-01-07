@@ -139,20 +139,19 @@ function TypingTime({ updateScore }) {
   }
 
   // Handlers for changing amount of seconds for test
-
-  // function changeTimeSixty() {
+  // function sixtySeconds() {
   //   setSeconds(60);
   // }
 
-  // function changeTimeFifteen() {
+  // function fifteenSeconds() {
   //   setSeconds(15);
   // }
 
   return (
     <div className="typing-test-container">
       {/* <div>
-        <button className="change-time-button">Sixty Second Timer</button>
-        <button className="change-time-button">Fifteen Second Timer</button>
+        <button className="change-time-button" onClick={sixtySeconds}>Sixty Second Timer</button>
+        <button className="change-time-button" onClick={fifteenSeconds}>Fifteen Second Timer</button>
       </div> */}
       <h1 className="title">Typing Test</h1>
       <p className="challenge">How fast can you type?</p>
