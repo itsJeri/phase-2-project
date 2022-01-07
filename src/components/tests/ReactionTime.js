@@ -71,11 +71,11 @@ function fetchScore(){
 updateScore(id,score)
 }
     return <div> 
-    <div class="instructions">
+    <div>
         <h1>Test your reactions</h1>
         <h5>Click Start & Click On The <span  style={{textShadow: "2px 2px 2px yellow"}}> Pacman</span> When It's <span style={{textShadow: "2px 2px 2px yellow"}}>Yellow</span></h5>
     </div>
-    <div class="scoreBoard" style={{marginBottom:"30px"}}>
+    <div style={{marginBottom:"30px"}}>
         <h2><span id="highScore" style={{color:color}} >{score}</span>  points</h2>
         <p></p>
         <Button variant="success" onClick={toggle}>{start?"Add My Score":"START"}</Button>
