@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react';
 import { Button } from 'react-bootstrap';
 import Countdown from './Countdown';
 
-function NumberMemory({ updateScore }) {
+function NumberMemory({ test, updateScore }) {
     const [start, setStart] = useState(false);
     const [answerPage, setAnswerPage] = useState(false);
     const [gameOver, setGameOver] = useState(false);
@@ -13,7 +13,7 @@ function NumberMemory({ updateScore }) {
 
     // GLOBAL VARIABLES
     const randNum = Math.floor(Math.random() * multiplier)
-    const id = 3
+    const id = test.id
   
     useEffect(() => {
         setCorrectNum(randNum);

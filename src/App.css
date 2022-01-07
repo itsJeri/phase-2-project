@@ -4,4 +4,43 @@
   background-color: #f3f3f3;
 }
 
+/* CAROUSEL */
+.carousel-item {
+  height: 600px;
+  background: #1a75ff;
+}
+
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 38%;
+}
+
+.carousel-caption h2 {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.carousel-caption h5 {
+  background: rgba(0, 0, 0, 0.5);
+  width: 70%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+
+/* TEST CARDS */
+.card {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
+.card:hover{
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
 

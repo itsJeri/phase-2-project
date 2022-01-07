@@ -9,8 +9,8 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Tests from './components/Tests';
-import TypingTest from './components/tests/TypingSpeed';
-import ReactionTest from './components/tests/ReactionTime';
+import TypingSpeed from './components/tests/TypingSpeed';
+import ReactionTime from './components/tests/ReactionTime';
 import NumberMemory from './components/tests/number-memory/NumberMemory';
 
 // APPLICATION
@@ -28,6 +28,27 @@ function App() {
       })
   }, [])
 
+  // TEST ROUTES
+  const testComponents = {
+    1: ReactionTime,
+    2: TypingSpeed,
+    3: NumberMemory,
+  }
+
+  const testRoutes = testData.map(test => {
+    const title = test.title.split(' ').join('');
+    const Component = testComponents[test.id];
+
+    return (
+      <Route
+        key={test.id}
+        path={`/tests/${title}`}
+        element={<Component test={test} updateScore={updateScore}/>}
+      />
+    )
+  })
+
+  // HANDLE DASHBOARD SCORES
   function updateScore(id, score) {
     const updatedTests = testData.map(test => {
       if (test.id === id) {
@@ -40,6 +61,7 @@ function App() {
     setTestData(updatedTests)
   }
 
+  // RENDER
   if (loading) {
     return (
       <div className='App'>
@@ -54,29 +76,18 @@ function App() {
       {
           <div style={{minHeight: '1000px'}}>
             <Routes>
-              <Route
-                path='/tests/NumberMemory'
-                element={<NumberMemory updateScore={updateScore}/>}
-              />
-              <Route
-                path='/tests/ReactionTime'
-                element={<ReactionTest updateScore={updateScore}/>}
-              />
-              <Route
-                path='/tests/TypingSpeed'
-                element={<TypingTest updateScore={updateScore}/>}
-              />
+              {testRoutes}
               <Route
                 path='/tests'
                 element={<Tests tests={testData} />}
               />
               <Route
                 path='/dashboard'
-                element={<Dashboard tests={testData} updateScore={updateScore}/>}
+                element={<Dashboard tests={testData} updateScore={updateScore} />}
               />  
               <Route
                 path='/'
-                element={<Home tests={testData}/>}
+                element={<Home tests={testData} />}
               />
             </Routes>
           </div> 

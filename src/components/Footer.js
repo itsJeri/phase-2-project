@@ -2,14 +2,24 @@ import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
     .main-footer {
-            background: #212529;
-            padding-top: 2rem;
-            color: white;
+        background: #212529;
+        padding-top: 2rem;
+        color: white;
+        text-align: left;
     }
 
     .footer-bottom {
         padding-top: 1rem;
         padding-bottom: 1rem;
+        text-align: center;
+    }
+
+    h4 {
+        margin-left: 50px;
+    }
+
+    ul {
+        margin-left: 50px;
     }
 
     ul li a {

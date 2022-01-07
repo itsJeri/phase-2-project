@@ -1,12 +1,15 @@
 import React,{useState} from 'react';
 import Button from 'react-bootstrap/Button';
-function ReactionTime(){
+function ReactionTime({ test, updateScore }){
     const[color,setColor]=useState()
     const[startTime,setStartTime]=useState(0)
     const[stopTime,setStopTime]=useState(0)
     const[speed,setSpeed]=useState(0)
     const[score,setScore]=useState(0)
     const [start, setStart] = useState(false);
+
+    const id = test.id;
+
  function handleStart(){	
         setStart(true)
         fetchScore()
