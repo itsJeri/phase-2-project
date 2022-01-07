@@ -5,7 +5,7 @@ import randomWords from "random-words";
 // Global variables for keeping track of stats
 // Timer is at 10 for testing purposes, would be set at 60
 const numberOfWords = 150;
-const seconds = 10;
+const seconds = 20;
 
 function TypingSpeed({ test, updateScore }) {
   const [words, setWords] = useState([]);
@@ -17,6 +17,7 @@ function TypingSpeed({ test, updateScore }) {
   const [status, setStatus] = useState("waiting");
   const [currentCharIndex, setCurrentCharIndex] = useState(-1);
   const [currentChar, setCurrentChar] = useState("");
+  // const [seconds, setSeconds] = useState(20);
   const textInput = useRef(null);
 
   const id = test.id;
@@ -97,14 +98,13 @@ function TypingSpeed({ test, updateScore }) {
     }
   }
 
-  // Function for  calculation of WPM
+  // Function for calculation of WPM
   function wordsPerMinute() {
-    return (correct + incorrect / 5) / 0.06;
+    return correct / 5 / 0.06;
   }
 
   // Highlights letters as they are typed
   function highlightLetters(wordIdx, charIdx, char) {
-    let color = "";
     if (
       wordIdx === currentWordIndex &&
       charIdx === currentCharIndex &&
@@ -133,15 +133,31 @@ function TypingSpeed({ test, updateScore }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ score: correct }),
+      body: JSON.stringify({ score: correct - incorrect }),
     });
     updateScore(id, correct);
   }
 
+  // Handlers for changing amount of seconds for test
+  // function sixtySeconds() {
+  //   setSeconds(60);
+  // }
+
+  // function fifteenSeconds() {
+  //   setSeconds(15);
+  // }
+
   return (
     <div className="typing-test-container">
+      {/* <div>
+        <button className="change-time-button" onClick={sixtySeconds}>Sixty Second Timer</button>
+        <button className="change-time-button" onClick={fifteenSeconds}>Fifteen Second Timer</button>
+      </div> */}
       <h1 className="title">Typing Test</h1>
-      <p className="challenge">How fast can you type?</p>
+      <h3 className="challenge">How fast can you type?</h3>
+      <p className="challenge">
+        Score is calculated from total words typed, not WPM
+      </p>
       {/* Hides words until start button is pressed */}
       <div className="typing-test">
         {status === "started" && (
