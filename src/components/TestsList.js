@@ -12,7 +12,7 @@ function TestsList({ tests }) {
     })
 
     return (
-        <div className="d-flex flex-row">
+        <div className="d-flex flex-row" style={{margin: 'auto', width: '80%'}}>
             {mappedTests}
         </div>
     )

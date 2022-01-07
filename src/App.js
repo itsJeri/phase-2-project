@@ -3,17 +3,15 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Loading from './components/Loading';
+import Loading from './components/loading-page/Loading';
 import MainNav from './components/MainNav';
+import Footer from './components/Footer';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Tests from './components/Tests';
 import TypingTest from './components/tests/TypingTest';
 import ReactionTest from './components/tests/ReactionTest';
 import NumberMemory from './components/tests/number-memory/NumberMemory';
-
-// GLOBAL STYLE
-document.body.style.margin='75px';
 
 // APPLICATION
 function App() {
@@ -43,13 +41,18 @@ function App() {
   }
 
   if (loading) {
-    return <Loading/>
+    return (
+      <div className='App'>
+        <MainNav/>
+        <Loading/>
+      </div>
+    )
   }
   return (
     <div className='App'>
       <MainNav/>
       {
-          <>
+          <div style={{minHeight: '1000px'}}>
             <Routes>
               <Route
                 path='/tests/NumberMemory'
@@ -76,8 +79,9 @@ function App() {
                 element={<Home tests={testData}/>}
               />
             </Routes>
-          </> 
+          </div> 
       }
+      <Footer/>
     </div>
   );
 }
