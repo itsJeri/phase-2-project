@@ -4,7 +4,7 @@ import randomWords from "random-words";
 
 // Global variables for keeping track of stats
 // Timer is at 10 for testing purposes, would be set at 60
-const id=2;
+const id = 2;
 const numberOfWords = 150;
 const seconds = 10;
 
@@ -66,7 +66,7 @@ function TypingTest({ updateScore }) {
     }
   }
 
-  // Moves on to next word after current word is typed
+  // Moves on to next character after current character is typed
   // All current char state tracks current character being typed
   function handleKeyDown({ keyCode, key }) {
     // kc32 = spacebar
@@ -94,6 +94,11 @@ function TypingTest({ updateScore }) {
     } else {
       setIncorrect(incorrect + 1);
     }
+  }
+
+  // Function for  calculation of WPM
+  function wordsPerMinute() {
+    return (correct + incorrect / 5) / 0.06;
   }
 
   // Highlights letters as they are typed
@@ -195,13 +200,12 @@ function TypingTest({ updateScore }) {
             <div className="columns">
               <div className="column has-text-centered">
                 <p className="words-per-minute">Words Per Minute:</p>
-                <p className="words-correct">{correct}</p>
+                <p className="words-correct">{wordsPerMinute()}</p>
               </div>
               <div className="column has-text-centered">
                 <div className="accuracy">Accuracy: </div>
                 <p className="accuracy-calculated">
                   {Math.round((correct / (correct + incorrect)) * 100) || 0}%
-                  {/* {Math.round((correct + incorrect) / 5 / 60000)}% */}
                 </p>
               </div>
             </div>
