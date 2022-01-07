@@ -1,11 +1,11 @@
 import React,{useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 
-function ReactionTime({ test, updateScore }){
+function ReactionTime({ test,updateScore }){
     const[color,setColor]=useState()
     const[score,setScore]=useState(0)
     const [start, setStart] = useState(false);
-    const [seconds, setSeconds] = useState();
+    const [seconds, setSeconds] = useState(10);
     const [click, setClick]=useState(false)
     
     const id = test.id;
@@ -28,7 +28,7 @@ function ReactionTime({ test, updateScore }){
       }
     function toggle() {
         setStart(!start);
-        setSeconds(start?seconds:0)
+        setSeconds(start?seconds:10)
       }
       useEffect(() => {
         const colorArray=["#845EC2","#FF6F91","#FF9671","#F9F871"]
@@ -40,9 +40,9 @@ function ReactionTime({ test, updateScore }){
              setScore(score+10)
          }
           interval = setInterval(() => {
-            setSeconds(seconds => seconds + 1);
+            setSeconds(seconds => seconds - 1);
           }, 1000);
-          if (seconds === 30 ){
+          if (seconds < 0 ){
               setStart(false)
             clearInterval(interval);
             fetchScore()
@@ -66,14 +66,16 @@ function fetchScore(){
         'application/json'
      },
     body:JSON.stringify({score:score})
+
 })
+updateScore(id,score)
 }
     return <div> 
     <div class="instructions">
         <h1>Test your reactions</h1>
-        <h5>Click Start & Click On The <span  style={{textShadow: "2px 2px 2px yellow"}}> Pacman</span> When It's <span style={{textShadow: "5px 5px 5px yellow"}}>Yellow</span></h5>
+        <h5>Click Start & Click On The <span  style={{textShadow: "2px 2px 2px yellow"}}> Pacman</span> When It's <span style={{textShadow: "2px 2px 2px yellow"}}>Yellow</span></h5>
     </div>
-    <div class="scoreBoard" style={{marginBottom:"50px"}}>
+    <div class="scoreBoard" style={{marginBottom:"30px"}}>
         <h2><span id="highScore" style={{color:color}} >{score}</span>  points</h2>
         <p></p>
         <Button variant="success" onClick={toggle}>{start?"Add My Score":"START"}</Button>
