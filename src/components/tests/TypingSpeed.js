@@ -99,9 +99,9 @@ function TypingSpeed({ test, updateScore }) {
   }
 
   // Function for calculation of WPM
-  function wordsPerMinute() {
-    return Math.round(correct / 5 / 0.06);
-  }
+  const wordsPerMinute = Math.round(correct / 5 / 0.045);
+  const WPM = `${wordsPerMinute} WPM`
+  
 
   // Highlights letters as they are typed
   function highlightLetters(wordIdx, charIdx, char) {
@@ -133,9 +133,9 @@ function TypingSpeed({ test, updateScore }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ score: correct - incorrect }),
+      body: JSON.stringify({ score: WPM }),
     });
-    updateScore(id, correct);
+    updateScore(id, WPM);
   }
 
   // Handlers for changing amount of seconds for test
@@ -218,7 +218,7 @@ function TypingSpeed({ test, updateScore }) {
             <div className="columns">
               <div className="column has-text-centered">
                 <p className="words-per-minute">Words Per Minute:</p>
-                <p className="words-correct">{wordsPerMinute()}</p>
+                <p className="words-correct">{wordsPerMinute}</p>
               </div>
               <div className="column has-text-centered">
                 <div className="accuracy">Accuracy: </div>
